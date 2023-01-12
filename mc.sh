@@ -12,7 +12,7 @@ MCASSETS="${MC%.*}"
 MCDIR="versions/$MC"
 MCJAR="$PWD/$MCDIR/$MC.jar"
 
-if [ -f $MCJAR ]
+if [ -f "$MCJAR" ]
 then
 	echo "Using Minecraft $MCJAR"
 else
@@ -21,6 +21,6 @@ else
 fi
 
 MCNATIVE="$MCDIR/natives"
-LIBS=$(find $PWD/libraries -type f | tr '\n' ':')
+LIBS=$(find "$PWD"/libraries -type f | tr '\n' ':')
 JVMOPT="-Xms512m -Xmx1g"
-java $JVMOPT -Djava.library.path=$MCNATIVE -cp "$LIBS:$MCJAR" net.minecraft.client.main.Main -accessToken null --version $MC --assetIndex ${MCASSETS}  --username $NAME
+java $JVMOPT -Djava.library.path="$MCNATIVE" -cp "$LIBS:$MCJAR" net.minecraft.client.main.Main -accessToken null --version "$MC" --assetIndex ${MCASSETS}  --username "$NAME"
